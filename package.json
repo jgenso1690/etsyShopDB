@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jgenso1690/etsyShopDB/issues"
   },
-  "homepage": "https://github.com/jgenso1690/etsyShopDB#readme"
+  "homepage": "https://github.com/jgenso1690/etsyShopDB#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
