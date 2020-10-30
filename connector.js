@@ -1,10 +1,23 @@
-/*require('dotenv').config()
+require('dotenv').config()
+const axios = require('axios')
 
 const apiKey = process.env.API_KEY;
 
-var shopListing = get('https://openapi.etsy.com/v2/shops?callback=findAllShopListingsActive&api_key=nhuh42k03xoiq9t8e67peg4u', (req,res)=>{
-    console.log(res)
-})
+const url = `https://openapi.etsy.com/v2/shops/:shop_id/listings/active?api_key=${apiKey}`;
 
-module.exports = shopListing;
-*/
+const getShopInfo = function(shopParams) {
+        
+        return axios.get(url, { 
+        params: shopParams 
+        })
+        .then(data => {
+            let shopData = data.data;
+            var allListings = shopData.results;
+            return(allListings) 
+        })
+        .catch(err=> {
+            console.log(err)
+        })
+
+}
+module.exports = getShopInfo;
