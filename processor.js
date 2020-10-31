@@ -9,7 +9,7 @@ const processFile = function(newShopInfo, shopInfoFile, shopId) {
       let pastListings = {};
       let i = 0;                
       while (i < listingsOnFile.length || i < newShopInfo.length ) {
-        if (listingsOnFile[i]["listing_id"]) {
+        if (listingsOnFile[i]) {
             pastListings[listingsOnFile[i]["listing_id"]] = listingsOnFile[i]["title"];
         }        
         if (newShopInfo[i]) {
@@ -17,18 +17,18 @@ const processFile = function(newShopInfo, shopInfoFile, shopId) {
         }
         i++
       }
-      
+
       let j = 0;
       let itemsAdded = [];
       let itemsRemoved = [];
       while (j < Object.keys(newListings).length || j < Object.keys(pastListings).length ) {
-         if (!Object.keys(newListings).includes(Object.keys(pastListings)[j])) {
+         if (Object.keys(pastListings).length > 0 && !Object.keys(newListings).includes(Object.keys(pastListings)[j])) {
              let listingNumber = Object.keys(pastListings)[j];
              let title = pastListings[Object.keys(pastListings)[j]];
              let change = `- removed listing ${listingNumber} "${title}"`;
              itemsRemoved.push(change);
          }                        
-         if (!!Object.keys(pastListings).includes(Object.keys(newListings)[j])) {
+         if (Object.keys(newListings)[j] && !Object.keys(pastListings).includes(Object.keys(newListings)[j])) {
              let listingNumber = Object.keys(newListings)[j];
              let title = newListings[Object.keys(newListings)[j]];
              let change = `+ added listing ${listingNumber} "${title}"`;

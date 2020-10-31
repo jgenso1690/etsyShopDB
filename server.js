@@ -10,9 +10,10 @@ const connector = require('./connector.js')
 const app = express()
 const port = 3000
 
-//get list of 25 random shopIds
-let shopIDs = [25841959, 25841929, 25841927, 25841909, 25841897,25842209];
-app.get('/shopIds', (req, res) => {
+//get list of 25 random shop Ids, limit for external API is 10 requests per second
+//use this call to get 25 shop Ids with setTimeout
+let shopIDs = [25861217,25861265];
+app.get('/shop-ids', (req, res) => {
    var url = `https://openapi.etsy.com/v2/shops?callback=findAllShopListingsActive&api_key=${apiKey}`
 
    axios.get(url)
@@ -29,12 +30,12 @@ app.get('/shopIds', (req, res) => {
 });
 
 //get listings of 25 random shopIds
-app.get('/shopListing', (req, res) => {
+app.get('/shop-listing', (req, res) => {
     for (let i = 0; i < shopIDs.length; i++) {
         let shopId = shopIDs[i];
         let shopIdParam = {'shop_id': shopId};
 
-        //external call to store the current listings information
+        
         let shopInfo = connector(shopIdParam);
         
         shopInfo.then(resolve => {       
