@@ -37,7 +37,7 @@ Any following call to the same Shop IDs will return any changes on each file and
 
 
 # Challenges you ran into
-- 
+- When using both the fs Nodejs module to handle files and Axios, I realized that I needed to use the asynchronous style while writing the code. An interesting challenge I encounter was that not only I was going to handle these promises, but also that such promises were needed for each Shop Id received. Consequently, I started by writing pseudocode and proceeded to write the promises. Finally, I used 'map' to create a new array transforming all items to promises, this way I was sure that they all needed to finish their own processes to consolidate them into one result that was later joined and returned.
 
 
 # Highlights 
