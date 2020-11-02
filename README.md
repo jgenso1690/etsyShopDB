@@ -1,14 +1,14 @@
 # etsyShopDB
 
 # Project Stack:
-Language: Javascript
-Nodejs 
-Expressjs
-Nodemon
-Axios
-Curl
-Body-parser
-Dotenv
+* Language: Javascript
+* Nodejs 
+* Expressjs
+* Nodemon
+* Axios
+* Curl
+* Body-parser
+* Dotenv
 
 # Project Instructions:
 
@@ -20,7 +20,7 @@ Dotenv
 
 * ## Triggering the application
     * ### With Postman:
-        * Pass the list of Etsy Shop IDs as the body of the request.
+        * Body: {"shopIDs":[insert Etsy Shop IDs]}
         * Make a Post request to: http://localhost:3000/shop-listing
     * ### With Curl:
         * Insert a list of Etsy Shop IDs inside the array correspondent to the key “shopIDs”, then run the curl command
