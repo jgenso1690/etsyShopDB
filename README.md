@@ -58,8 +58,8 @@ Any following call to the same Shop IDs will return any changes on each file and
 - To continue developing this service my next step would be to pick a database. This decision will be base on the type of data. Each Shop is independent of each other, they don't have relational data, and the data returned from the external API is JSON-formatted. That’s why I would choose MongoDB. This database is flexible and scalable which will give the application room to keep growing without jeopardizing performance.
 For the next step, I would set up a private file to create a connection with the database and another file to set up any CRUD methods necessary to query the database. Based on what I’ve done so far, I know I will need 3 of the CRUD methods: Create, Read, and Update. Later, I will require such file in my server.js file. In my server.js file, I will need to refactor my post method for my endpoint ‘/shop-listings’ the following way: the method receives (same as before) the list of ids in the body of the request. Then, it will use the Read method to read the shop Ids that are already in the database and compare them with the list received. Next, if it can’t find the Id it will use the Create method to create a new document inside the database for that Shop Id. If there is a Shop Id match, the method will proceed with the information retrieved from the database(previously with the Read method) and make a call to the external API. Finally, it will compare the two documents (the one in the database and the one received from the API), identify and return the differences, and it will use the Update method to sync the new information in the database. Here is the pseudocode:
 
-_app.post('/shop-listing', (req, res) => {_
-  _//create a variable to hold the list of ShopIds from the request_
+```app.post('/shop-listing', (req, res) => {
+  //create a variable to hold the list of ShopIds from the request
   //Iterate through the ShopIds list and for each one do the following:
     //call the Read method and compare to the ShopId
       //if there is no match, use the Create method to save the new information
@@ -68,6 +68,5 @@ _app.post('/shop-listing', (req, res) => {_
    //create a variable to hold the information received from calling the external 	API(connectorfile), this will return a promise.
          //use the .then keyword to wait for the asynchronous response from the external API.
 	//pass the 2 documents to the processFile method
-	//send response with the information received._
-
+	//send response with the information received.```
 
