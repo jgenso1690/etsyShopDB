@@ -13,8 +13,8 @@ const port = 3000
 
 app.use(bodyParser.json())
 
-//get random shop Ids
-/*let shopIDs = [25841959,25841929,25841927];
+//get 5 random shop Ids
+/*let shopIDs = [];
 app.get('/shop-ids', (req, res) => {
    var url = `https://openapi.etsy.com/v2/shops?callback=findAllShopListingsActive&api_key=${apiKey}`
 
@@ -30,14 +30,6 @@ app.get('/shop-ids', (req, res) => {
    })
    .catch(err => res.send(err));
 });*/
-
-//get listings of 25 random shopIds
-/*
-curl --header "Content-Type: application/json" \
---request POST \
---data '{"shopIDs":[25861217,25861265]}' \
-http://localhost:3000/shop-listing
-*/
 
 app.post('/shop-listing', async (req, res) => {
    const { shopIDs } = req.body;
